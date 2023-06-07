@@ -21,7 +21,7 @@ More information can be found [here](https://docs.kedehub.io/kedehub/kedehub-mer
 
 ## Using KEDEMatcher
 
-All you need to know is in the [How to use KEDEMatcher](./docs/howto.txt) document.
+All you need to know is in the [How to use KEDEMatcher](./docs/howto.md) document.
 
 ## Get involved
 
