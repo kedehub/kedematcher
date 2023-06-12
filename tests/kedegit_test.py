@@ -15,7 +15,7 @@ class KedeGitTest(unittest.TestCase):
         print(self.id())
         self.current_directory = os.path.abspath(os.path.dirname(__file__))
         self.working_directory = working_directory
-        self.proc = subprocess.Popen(['/Users/dimitarbakardzhiev/git/kedematcher/venv39/bin/python3', '-m' ,'tests'],
+        self.proc = subprocess.Popen(['/Users/dimitarbakardzhiev/git/kedehub_server/venv38/bin/python3', '-m' ,'tests'],
                                      cwd = '/Users/dimitarbakardzhiev/git/kedehub_server/',
                                      stdin=subprocess.PIPE)
         time.sleep(5.5)
