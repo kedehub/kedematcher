@@ -76,10 +76,6 @@ python3 -m pip install --upgrade pip
 
 pip install -r requirements.txt
 
-pip3 install names-matcher
-
-pip3 install numpy --upgrade
-
 deactivate
 ```
 
