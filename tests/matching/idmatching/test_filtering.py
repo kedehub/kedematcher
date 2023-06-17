@@ -40,6 +40,14 @@ class FilteringTestCase(unittest.TestCase):
     def test_is_ignored_email_shrishrirang_users_travis_org(self):
         self.assertEqual(True, is_ignored_email('shrishrirang@travis-ci.org'))
 
+    def test_is_blacklisted_github_actions_bot_email(self):
+        self.assertEqual(True, is_blacklisted_email('github-actions[bot]@users.noreply.github.com'))
+
+    def test_is_blacklisted_github_actions_bot_custom_email(self):
+        self.assertEqual(True, is_blacklisted_email('41898282+github-actions[bot]@users.noreply.github.com'))
+
+    def test_is_blacklisted_github_actions_bot_name(self):
+        self.assertEqual(True, is_ignored_name('github-actions[bot]'))
 
 if __name__ == '__main__':
     unittest.main()

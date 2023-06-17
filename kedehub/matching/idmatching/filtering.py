@@ -24,9 +24,25 @@ def is_ignored_name(name: str):
 
 
 def is_blacklisted_email(email: str) -> bool:
+    # This function returns True
+    # for both 'github-actions[bot]@users.noreply.github.com'
+    # and '41898282+github-actions[bot]@users.noreply.github.com'
+
     assert isinstance(email, str), "Expected string, got `%s` with type `%s`" % (email,
                                                                                  type(email))
-    return email.lower() in IGNORED_EMAILS
+    # split the email on '@' and consider the second part as the domain
+    local_part, domain = email.lower().split('@')
+
+    # check if '+' exists in the local part of the email
+    if '+' in local_part:
+        # if '+' exists, split on '+' and consider the second part
+        local_part = local_part.split('+')[1]
+
+    # join the local part and domain to form the email
+    parsed_email = f'{local_part}@{domain}'
+
+    # check if the parsed email exists in the blacklisted emails
+    return parsed_email in IGNORED_EMAILS
 
 
 def is_blacklisted_domain(email: str) -> bool:

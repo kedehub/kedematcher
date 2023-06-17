@@ -1,0 +1,18 @@
+1) Switch to blacklists directory
+
+cd kedematcher/kedehub/matching/blacklists/
+
+2) Unzip files
+To unzip GZ files, use: gzip -d file.gz (where file.gz is the path to your file).
+For simpler syntax, you can also use gunzip to replace gzip -d, so type: gunzip file.gz
+
+gunzip emails.csv.gz
+
+These commands will also remove the original file.
+To unzip GZ and keep the original file, use: gzip -dk file.gz
+
+3) Change the contents of emails.csv
+
+4) GZip again:
+
+gzip emails.csv
