@@ -1,0 +1,40 @@
+
+-- install pyinstaller
+cd git/kedematcher
+
+source venv39/bin/activate
+
+pip install pyinstaller
+
+pyinstaller --version
+
+deactivate
+--
+
+-- build for Mac folder--
+
+cd git/kedematcher
+
+source venv39/bin/activate
+
+pyinstaller --onefile  --name kedematcher --distpath ./dist/mac_dist --paths ./venv39/lib/python3.9/site-packages/ kedehub/__main__.py --add-data kedehub/matching/blacklists:kedehub/matching/blacklists
+
+./dist/mac_dist/kedematcher identity-merge
+
+deactivate
+
+---
+
+-- build for AWS Linux folder--
+
+cd kedematcher
+
+source ~/kedematcher/env/bin/activate
+
+pyinstaller --onefile  --name kedematcher --distpath ./dist/aws_dist --paths ./venv39/lib/python3.9/site-packages/ kedehub/__main__.py --add-data kedehub/matching/blacklists:kedehub/matching/blacklists
+
+./dist/aws_dist/kedematcher identity-merge
+
+deactivate
+
+---
