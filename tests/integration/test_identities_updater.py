@@ -134,7 +134,7 @@ class IdentitiesUpdaterTestCases(KedeGitTest):
         self.assertEqual(3, authors_updated)
         self.assertEqual(authors_merged_count, authors_updated)
 
-    def test_identities_updater_confidence_07(self):
+    def test_identities_updater_confidence_07_enter_no(self):
 
         authors = {
             'Alexandre Kurth <alexandre.kurth@gmail.com>': Author(
@@ -621,7 +621,7 @@ class IdentitiesUpdaterTestCases(KedeGitTest):
 
         self.assertListEqual(expected, users)
 
-    def test_merge_users_set_longest_name_of_all_authors_manual_confirmation(self):
+    def test_merge_users_set_longest_name_of_all_authors_manual_confirmation_enter_yes(self):
 
         users = [
                 [User(id=UUID('0eb24dea-a3a0-4e28-8dd8-3e9332cabe10'), name='B', primary_email='264380+bartosz-lipinski@users.noreply.github.com',

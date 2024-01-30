@@ -8,7 +8,7 @@ from kedehub.matching.matcher import match
 from kedehub.services.author_service import build_author_map, assign_author_to_user_profile
 from kedehub.services.dro.user_dto import User
 from kedehub.services.user_service import create_new_user
-from pydantic.errors import EmailError
+from email_validator import validate_email, EmailNotValidError
 from kedehub.utility.input_utility import get_bool_input, auto_confirmation
 from kedehub.utility.email_utility import generate_no_reply_user_email_address
 
@@ -165,9 +165,9 @@ def create_users_dict(authors):
 
         # generate no-reply email for the user
         try:
-            EmailStr.validate(author.email)
+            validate_email(author.email, check_deliverability=False)
             user.primary_email = author.email
-        except EmailError:
+        except EmailNotValidError:
             user.primary_email = generate_no_reply_user_email_address(user.id, user.name)
 
     return users

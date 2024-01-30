@@ -10,10 +10,10 @@ class KedeHubLoadDBOnceTest(unittest.TestCase):
     def setUpClass(cls):
         cls.current_directory = os.path.abspath(os.path.dirname(__file__))
         cls.working_directory = working_directory
-        cls.proc = subprocess.Popen(['/Users/dimitarbakardzhiev/git/kedematcher/venv39/bin/python', '-m' ,'tests'],
+        cls.proc = subprocess.Popen(['/Users/dimitarbakardzhiev/git/kedematcher/venv311/bin/python', '-m' ,'tests'],
                                      cwd = '/Users/dimitarbakardzhiev/git/kedehub_server/',
                                      stdin=subprocess.PIPE)
-        time.sleep(5.5)
+        time.sleep(6.5)
 
     @classmethod
     def tearDownClass(cls):
