@@ -79,4 +79,32 @@ pip install -r requirements.txt
 deactivate
 ```
 
+### Merge identities for a single project
+
+The identity-merge command will:
+
+- Determine all authors who belong to the same individual
+- Create a new KEDEHub user for that individual
+
+To merge identities on a single project, use:
+
+```commandline
+
+python3 -m kedehub identity-merge -p PROJECT_ID
+```
+The same with Docker:
+```commandline
+docker run --rm --name kedematcher-container -v ~/git/kedematcher/docs:/root/.config/KedeGit kedematcher-image:latest identity-merge  -p PROJECT_ID
+```
+
+### Merge identities for a company
+To merge identities on all projects for a company, use:
+
+```commandline
+
+python3 -m kedehub identity-merge
+```
+The same with Docker:
+```commandline
+docker run --rm --name kedematcher-container -v ~/git/kedematcher/docs:/root/.config/KedeGit kedematcher-image:latest identity-merge
 ```
