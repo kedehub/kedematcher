@@ -31,7 +31,6 @@ class ServerConfiguration:
         }
         # https://confuse.readthedocs.io/en/latest/usage.html
         self.config = confuse.Configuration(APP_NAME)
-        print('Confing dir: '+ self.config.config_dir())
         self.config.get(self.template)
 
     def get_config_dir(self):

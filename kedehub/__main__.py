@@ -1,6 +1,7 @@
 import argparse
 import sys
-
+import time
+from tqdm import tqdm
 from kedehub.services.identities_updater import identity_merge_users, identity_merge_users_with_human_help
 from kedehub.services.project_service import load_all_project_names
 
@@ -16,12 +17,16 @@ def identity_merge_project(options):
     print("First pass...")
     len_users, lean_authors, len_matched_users_by_email, len_matched_users_by_email_and_name, \
     authors_updated, users_inserted, users_merged_count, authors_merged_count = identity_merge_users(projects_to_update, verbose)
-    print('Successfully merged {} into {} users with {} authors for {} projects. Created {} new users. '.format(len_users, len_matched_users_by_email_and_name, authors_updated, number_or_projects_to_update, users_inserted))
+
+    time.sleep(1)
+    tqdm.write('Successfully merged {} into {} users with {} authors for {} projects. Created {} new users. '.format(len_users, len_matched_users_by_email_and_name, authors_updated, number_or_projects_to_update, users_inserted))
 
     print("Second pass...")
     len_users, lean_authors, len_matched_users_by_email, len_matched_users_by_email_and_name, \
     authors_updated, users_inserted, users_merged_count, authors_merged_count = identity_merge_users_with_human_help(projects_to_update, verbose)
-    print(
+
+    time.sleep(1)
+    tqdm.write(
         'Successfully merged {} into {} users with {} authors for {} projects. Created {} new users. '.format(len_users,
                                                                                                               len_matched_users_by_email_and_name,
                                                                                                               authors_updated,
