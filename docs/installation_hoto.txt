@@ -1,12 +1,17 @@
 
 -- install pyinstaller
+
 cd git/kedematcher
 
-source venv39/bin/activate
+source venv311/bin/activate
+
+pip install -r requirements.txt
 
 pip install pyinstaller
 
 pyinstaller --version
+
+## remove psycopg2 from requirements.text
 
 deactivate
 --
@@ -17,7 +22,7 @@ cd git/kedematcher
 
 source venv39/bin/activate
 
-pyinstaller --onefile  --name kedematcher --distpath ./dist/mac_dist --paths ./venv39/lib/python3.9/site-packages/ kedehub/__main__.py --add-data kedehub/matching/blacklists:kedehub/matching/blacklists
+pyinstaller --onefile  --name kedematcher --distpath ./dist/mac_dist --exclude-module test --paths ./venv311/lib/python3.11/site-packages/ kedehub/__main__.py --add-data kedehub/matching/blacklists:kedehub/matching/blacklists
 
 ./dist/mac_dist/kedematcher identity-merge
 
@@ -31,10 +36,37 @@ cd kedematcher
 
 source ~/kedematcher/env/bin/activate
 
-pyinstaller --onefile  --name kedematcher --distpath ./dist/aws_dist --paths ./venv39/lib/python3.9/site-packages/ kedehub/__main__.py --add-data kedehub/matching/blacklists:kedehub/matching/blacklists
+pyinstaller --onefile  --name kedematcher --distpath ./dist/aws_dist --paths ./venv311/lib/python3.11/site-packages/ kedehub/__main__.py --add-data kedehub/matching/blacklists:kedehub/matching/blacklists
 
 ./dist/aws_dist/kedematcher identity-merge
 
 deactivate
 
 ---
+-- build for Windows folder--
+
+https://www.python.org/downloads/release/python-3118/
+
+cd .\git\kedematcher\
+
+git pull
+
+python -m venv venv311
+
+.\venv311\Scripts\Activate.ps1
+
+$Env:PYTHONPATH = "C:\Users\dimit\git\kedematcher"
+
+pip install pyinstaller
+
+## remove psycopg2, pyinstaller, packaging  from requirements.text
+
+pip3 install lapjv==1.3.27
+
+pip install -r requirements.txt
+
+pyinstaller --onefile --name kedematcher --distpath .\dist\win_dist --exclude-module test --paths .\venv311\lib\site-packages kedehub\__main__.py --add-data "kedehub\matching\blacklists;kedehub\matching\blacklists"
+
+deactivate
+
+.\dist\win_dist\kedematcher identity-merge
