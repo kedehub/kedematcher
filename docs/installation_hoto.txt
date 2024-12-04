@@ -20,7 +20,7 @@ deactivate
 
 cd git/kedematcher
 
-source venv39/bin/activate
+source venv311/bin/activate
 
 pyinstaller --onefile  --name kedematcher --distpath ./dist/mac_dist --exclude-module test --paths ./venv311/lib/python3.11/site-packages/ kedehub/__main__.py --add-data kedehub/matching/blacklists:kedehub/matching/blacklists
 
