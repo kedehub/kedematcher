@@ -28,10 +28,12 @@ def is_blacklisted_email(email: str) -> bool:
     # for both 'github-actions[bot]@users.noreply.github.com'
     # and '41898282+github-actions[bot]@users.noreply.github.com'
 
-    assert isinstance(email, str), "Expected string, got `%s` with type `%s`" % (email,
-                                                                                 type(email))
-    # split the email on '@' and consider the second part as the domain
-    local_part, domain = email.lower().split('@')
+    assert isinstance(email, str), "Expected string, got `{}` with type `{}`".format(email, type(email))
+    parts = email.lower().split('@')
+    if len(parts) == 2:
+        local_part, domain = parts
+    else:
+        return False
 
     # check if '+' exists in the local part of the email
     if '+' in local_part:
