@@ -2,7 +2,7 @@ from asyncio import get_event_loop
 from functools import lru_cache
 from typing import Any, Awaitable, Callable, Dict, Generic, Type, TypeVar, overload
 import sys
-from httpx import AsyncClient, Request, Response
+from httpx import AsyncClient, Request, Response, ConnectError
 from pydantic import ValidationError
 
 from .api.commit_api import SyncCommitApi
@@ -10,7 +10,7 @@ from .api.project_api import AsyncProjectApi, SyncProjectApi
 from .api.author_api import AsyncAuthorApi, SyncAuthorApi
 from .api.repository_api import SyncRepositoryApi
 from .api.user_api import SyncUserApi, AsyncUserApi
-from .exceptions import ResponseHandlingException, UnexpectedResponse
+from .exceptions import ResponseHandlingException
 
 ClientT = TypeVar("ClientT", bound="ApiClient")
 
@@ -91,12 +91,15 @@ class ApiClient:
             print("Authorization failed. Please check your user or token.")
             sys.exit(1)
         else:
-            print(f"An unexpected error occurred: {e}")
+            print(f"An unexpected error occurred: {response.status_code} {response.text}")
 
     async def send_inner(self, request: Request) -> Response:
         try:
             # https://www.python-httpx.org/advanced/#setting-and-disabling-timeouts
             response = await self._async_client.send(request)
+        except ConnectError as e:
+            print(f"Connection error: {e}")
+            sys.exit(1)
         except Exception as e:
             raise ResponseHandlingException(e)
         return response
