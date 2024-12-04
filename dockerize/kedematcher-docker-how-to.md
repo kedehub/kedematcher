@@ -17,6 +17,11 @@ docker run --rm --name kedematcher-container -v ~/git/kedematcher/docs:/root/.co
 ```
 docker tag kedematcher-image:latest public.ecr.aws/kedehub/kedematcher-image:latest
 ```
+ Retrieve an authentication token and authenticate your Docker client to your registry.
+
+```
+aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/kedehub
+```
 
 Push your architecture-specific images to ECR (assuming you've already built them):
 
